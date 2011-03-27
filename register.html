@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Impressions Register</title>
+	</head>
+	<Body>	
+		<h1>Impressions Registration</h1><br/><br/>
+		<h2>Enter Credentials</h2>
+		<p>You must fill in all fields in order to register.</p>
+		<!--Create a form for the user to enter his/her credentials-->
+		<form action = "register.php" method = "post">
+			<label>First Name:<input type = "text" name = "firstName" /></label><br/>
+			<label>Last Name:<input type = "text" name = "lastName" /></label><br/>
+			<label>Spartan E-Mail:<input type = "text" name = "email1" /></label><br/>
+			<label>Re-type E-Mail:<input type = "text" name = "email2" /></label><br/>
+			<p><strong>Current Standing:</strong><br/>
+				&nbsp;&nbsp; Freshman <input type = "radio" name = "currentStanding" value = "Freshman" /><br/>
+				&nbsp;&nbsp; Sophomore <input type = "radio" name = "currentStanding" value = "Sophomore" /><br/>
+				&nbsp;&nbsp; Junior <input type = "radio" name = "currentStanding" value = "Junior" /><br/>
+				&nbsp;&nbsp; Senior <input type = "radio" name = "currentStanding" value = "Senior" /><br/>
+			</p>
+			<label>Birthdate:<input type = "text" name = "birthdate" /> (MM/DD/YYYY)</label><br/>
+			<label>Username:<input type = "text" name = "username" /></label><br/>
+			<label>Password:<input type = "password" name = "password1" /></label><br/>
+			<label>Re-type Password:<input type = "password" name = "password2" /></label><br/><br/>
+			
+			<input type = "submit" value = "Sign Me Up!" name = "submit" /> &nbsp;&nbsp;
+			<input type = "reset" value = "Clear"  />
+		</form>
+	</Body>
+</html>
+
