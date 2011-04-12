@@ -1,23 +1,34 @@
 function isValid(form) {
+	
+	//get all of the elements from the form
+	var firstName = form.elements["firstName"];
+	var lastName = form.elements["lastName"];
+	var email1 = form.elements["email1"];
+	var email2 = form.elements["email2"];
+	var currentStanding = form.elements["currentStanding"];
+	var bdayMonth = form.elements["bdayMonth"];
+	var bdayDay = form.elements["bdayDay"];
+	var bdayYear = form.elements["bdayYear"];
+	var username = form.elements["username"];
+	var password1 = form.elements["password1"];
+	var password2 = form.elements["password2"];
+	
 	//make sure everything is filled out
-	if (form.firstName.value == "" || form.lastName.value == "" || form.email1.value == "" || form.email2.value == "" || form.birthdate.value == "" || form.username.value == "" || form.password1.value == "" || form.password2.value == "") {
-		document.write("Please fill in all fields.");
+	if (firstName.value == "" || lastName.value == "" || email1.value == "" || email2.value == "" || currentStanding.value == "" || bdayMonth.value == "" || bdayDay.value == "" || bdayYear.value == "" || username.value == "" || password1.value == "" || password2.value == "") {
+		alert("Please fill in all fields.<br/>");
 		return false;
-	}
-	else {
-		document.write("All fields are filled in.");
 	}
 	
 	//check if the passwords are the same
 	if (form.password1.value == form.password2.value) {}
 	else {
-		document.write("Please make sure your passwords match.");
+		alert("Please make sure your passwords match.<br/>");
 		return false;
 	}
 	//check if the emails are the same
 	if (form.email1.value == form.email2.value) {}
 	else {
-		document.write("Please make sure your emails match.");
+		alert("Please make sure your emails match.<br/>");
 		return false;
 	}
 	//everything has been checked so we can go on to send the data to the database
