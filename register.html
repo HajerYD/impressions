@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>Impressions Register</title>
-		<script type="text/javascript" src="javascripts/register.js"></script>
+		<script type="text/javascript" src="javascripts/register.js" ></script>
 	</head>
 	<Body>	
 		<h1>Impressions Registration</h1><br/><br/>
@@ -9,24 +9,27 @@
 		<p>You must fill in all fields in order to register.</p>
 		<!--Create a form for the user to enter their credentials-->
 		<form action="register.php" onsubmit="return isValid(this);" method="post">
-			<label>First Name:<input type = "text" name = "firstName" id="firstName" /></label><br/>
-			<label>Last Name:<input type = "text" name = "lastName" id="lastName" /></label><br/>
-			<label>Spartan E-Mail:<input type = "text" name = "email1" id="email1" /></label><br/>
-			<label>Re-type E-Mail:<input type = "text" name = "email2" id="email2" /></label><br/>
-			<p><strong>Current Standing:</strong><br/>
-				&nbsp;&nbsp; Freshman <input type = "radio" name = "currentStanding" value = "Freshman" /><br/>
-				&nbsp;&nbsp; Sophomore <input type = "radio" name = "currentStanding" value = "Sophomore" /><br/>
-				&nbsp;&nbsp; Junior <input type = "radio" name = "currentStanding" value = "Junior" /><br/>
-				&nbsp;&nbsp; Senior <input type = "radio" name = "currentStanding" value = "Senior" /><br/>
-			</p>
-			<label>Birthdate:<input type = "text" name = "birthdate" id="birthdate" /> (YYYY/MM/DD)</label><br/>
-			<label>Username:<input type = "text" name = "username" id="username" /></label><br/>
-			<label>Password:<input type = "password" name = "password1" id="password1" /></label><br/>
-			<label>Re-type Password:<input type = "password" name = "password2" id="password2" /></label><br/><br/>
-			
-			<input type = "submit" value = "Sign Me Up!" name = "submit" /> &nbsp;&nbsp;
-			<input type = "reset" value = "Clear"  />
-		</form>	
-		<p name="errorSpace" id="errorSpace"></p>
+			<table>
+            	<tr><td>First Name:</td> <td><input type = "text" name="firstName" /></td></tr>
+                <tr><td>Last Name:</td> <td><input type = "text" name="lastName" id="lastName" /></td></tr>
+                <tr><td>Spartan E-Mail:</td> <td><input type = "text" name="email1" /></td></tr>
+                <tr><td>Re-type E-Mail:</td> <td><input type = "text" name="email2" /></td></tr>
+                <tr><td>Current Standing</td><td><select name="currentStanding">
+             	   <option>Freshman<option>
+                   <option>Sophomore<option>
+                   <option>Junior<option>
+                   <option>Senior<option>
+                </select></td></tr>
+                <tr><td>Birthdate:</td> <td><input type="text" name="birthdate" />YYYY/MM/DD</td></tr>
+                <tr><td>Username:</td><td><input type = "text" name="username" /></td></tr>
+                <tr><td>Password:</td><td><input type = "password" name="password1" /></td></tr>
+                <tr><td>Re-type Password:</td><td><input type = "password" name="password2" ></td></tr>
+      		</table>
+            <input type = "submit" value = "Sign Me Up!" name = "submit">
+            <input type = "reset" value = "Clear"  />
+            
+       		<!--I would like to get some sort of error message pop up down here rather than on a new page
+       		when there is an error with the form.-->
+        </form>
 	</Body>
 </html>
