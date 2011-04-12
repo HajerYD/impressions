@@ -5,13 +5,16 @@ function isValid(form) {
 	var lastName = form.elements["lastName"];
 	var email1 = form.elements["email1"];
 	var email2 = form.elements["email2"];
-	var birthdate = form.elements["birthdate"];
+	var currentStanding = form.elements["currentStanding"];
+	var bdayMonth = form.elements["bdayMonth"];
+	var bdayDay = form.elements["bdayDay"];
+	var bdayYear = form.elements["bdayYear"];
 	var username = form.elements["username"];
 	var password1 = form.elements["password1"];
 	var password2 = form.elements["password2"];
 	
 	//make sure everything is filled out
-	if (firstName.value == "" || lastName.value == "" || email1.value == "" || email2.value == "" || birthdate.value == "" || username.value == "" || password1.value == "" || password2.value == "") {
+	if (firstName.value == "" || lastName.value == "" || email1.value == "" || email2.value == "" || currentStanding.value == "" || bdayMonth.value == "" || bdayDay.value == "" || bdayYear.value == "" || username.value == "" || password1.value == "" || password2.value == "") {
 		alert("Please fill in all fields.<br/>");
 		return false;
 	}
