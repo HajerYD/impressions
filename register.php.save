@@ -4,9 +4,8 @@
 				$first = ($_POST["firstName"]); 
 				$password = md5($_POST["password1"]);
 				$last = ($_POST["lastName"]);
-				$bdayMonth = ($_POST["bdayMonth"]);
-				$bdayDay = $_POST["bdayDay"];
-				$bdayYear = $_POST["bdayYear"];
+				$bdayMonth = ($_POST["bdayMonth"])
+;
 				$email	 = ($_POST["email1"]);
 				$current = ($_POST["currentStanding"]);
 				$username = ($_POST["username"]);
@@ -23,7 +22,7 @@
 				$random = rand(23456789,98765432);
 
 				// Performing SQL query
-				$query = "INSERT INTO Users VALUES ('$first','$last','".bdayYear."/".bdayMonth."/".bdayDay."','$currentStanding','$username','$password','$random','0','$email','DEFAULT','DEFAULT','$random','0');";
+				$query = "INSERT INTO Users VALUES ('$first','$last','$birth','$currentStanding','$username','$password','$random','0','$email','DEFAULT','DEFAULT','$random','0');";
 				$result = mysql_query($query) or die("Query failed: " . mysql_error() . "<br>");
 
 				//sending email
@@ -36,13 +35,9 @@
 				ini_set("smtp_port","25"); 
 				$body = "
 
-				Hello $firstName,\n\n
-				
-				
-				Please copy/paste the following URL into your browser to activate your account:\n
-				
-				10.40.40.84/activate.php?username=$username&code=$random;\n\n
-
+				Hello $firstName,/n/n
+				Please click the link below to activate your account:
+				10.40.40.84/activate.php?username=$username&code=$random;/n/n
 
 				Thanks!
 				";
