@@ -1,12 +1,12 @@
 function isValid(form) {
 	
 	//get all of the elements from the form
-	var firstName = document.getElementById('firstName');
+	var firstName = document.getElementById("firstName");
 	var lastName = document.getElementById("lastName");
 	var email1 = document.getElementById("email1");
 	var email2 = document.getElementById("email2");
 	var currentStanding = document.getElementById("currentStanding");
-	var bdayMonth = form.elements["bdayMonth");
+	var bdayMonth = document.getElementById("bdayMonth");
 	var bdayDay = document.getElementById("bdayDay");
 	var bdayYear = document.getElementById("bdayYear");
 	var username = document.getElementById("username");
