@@ -30,9 +30,9 @@
 				echo "starting mail sending";
 				//copy
 				
-				require_once("pear/share/pear/Mail.php");
+				require_once "Mail.php";
 echo "<br/>1";
-        		$from = "Alex Hokanson <verify.impressions@gmail.com>";
+        		$from = "<verify.impressions@gmail.com>";
        		 	$to = "<avidgamer123@gmail.com>";
         		$subject = "Activate your account";
         		$body = "
@@ -48,22 +48,21 @@ echo "<br/>1";
 				Thanks!
 				";
 
-        		$host = "localhost";
-        		$port = "587";
+        		$host = "ssl://smtp.gmail.com";
+        		$port = "465";
         		$username = "verify.impressions@gmail.com";
         		$password = "!mpressions";
 echo "2";
         		$headers = array ('From' => $from,
           			'To' => $to,
           			'Subject' => $subject);
-echo "3";
-          		$mailer_params['host'] = $host;
-          		$mailer_params['port'] = $port;
-          		$mailer_params['auth'] = true;
-          		$mailer_params['username'] = $username;
-          		$mailer_params['password'] = $password;          		          		          		
-          		
-        		$smtp = Mail::factory('smtp', $mailer_params);
+          		echo "3";
+        		$smtp = Mail::factory('smtp',
+          		array ('host' => $host,
+            		'port' => $port,
+            		'auth' => true,
+            		'username' => $username,
+            		'password' => $password));
 echo "4";
       			error_reporting(E_ALL);
 				ini_set(‘display_errors’, ‘on’); 
@@ -72,7 +71,7 @@ echo "5";
             		die("Error : " . $smtp->getMessage());
 				}
 echo "6";
-				$mail = $smtp->send($to, $headers, $body) or die("Something bad happened"); 
+				$mail = $smtp->send($to, $headers, $body); 
 echo "7";
 				if (PEAR::isError($mail)) {
 					echo("<p>" . $mail->getMessage() . "</p>");
