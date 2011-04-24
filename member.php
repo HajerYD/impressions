@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	
 	if(isset($_SESSION['username']))
 		echo "Welcome, ".$_SESSION['username']."!  <br><a href='login.html' >Log Out</a>&nbsp;&nbsp;<a href='User_Profile.php' >Profile</a>";
 	else {
@@ -15,7 +16,7 @@
 			$numrows = mysql_num_rows($query);
 			//if numrows with that usename and password exists then execute otherwise output "user doesnot exist
 			if($numrows != 0){
-			//fetch each column with that username and put it in an array $row
+				//fetch each column with that username and put it in an array $row
 				while ($row = mysql_fetch_assoc($query)){
 					$dbusername = $row['username'];
 					$dbpassword = $row['password'];
