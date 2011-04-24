@@ -33,7 +33,7 @@
 		}
 	}
 	 else
-		die("That user doesnot exist!"); 
+		die("That user does not exist!"); 
 	}else 
 		die("please enter your username and password!");
 

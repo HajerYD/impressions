@@ -8,7 +8,7 @@
 				$bdayDay = $_POST["bdayDay"];
 				$bdayYear = $_POST["bdayYear"];
 				$email	 = ($_POST["email1"]);
-				$current = ($_POST["currentStanding"]);
+				$currentStanding = ($_POST["currentStanding"]);
 				$username = ($_POST["username"]);
 
 				// Connecting, selecting database
@@ -23,11 +23,11 @@
 				$random = rand(23456789,98765432);
 
 				// Performing SQL query
-				$query = "INSERT INTO Users VALUES ('$first','$last','".bdayYear."/".bdayMonth."/".bdayDay."','$currentStanding','$username','$password','$random','0','$email','DEFAULT','DEFAULT','$random','0');";
-				//$result = mysql_query($query) or die("Query failed: " . mysql_error() . "<br>");
+				$query = "INSERT INTO Users VALUES ('$first','$last','".$bdayYear."/".$bdayMonth."/".$bdayDay."','$currentStanding','$username','$password','$random','0','$email','DEFAULT','DEFAULT','$random','0');";
+				$result = mysql_query($query) or die("Query failed: " . mysql_error() . "<br>");
 
 
-				echo "starting mail sending";
+				/* echo "starting mail sending";
 				//copy
 				
 				require_once("pear/share/pear/Mail.php");
