@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	echo "Username: " . $_SESSION['username'];
 	if(!isset($_SESSION['username'])) {
 		die("You must log in to view this page.<br/><a href='login.html' >Login</a>");
 	}
@@ -16,7 +15,7 @@
             <a href="member.php" id="member" />Home</a>
             <a href="User_Profile.php" id="profile" />Profile</a>
             <a href="Courses_Available.php" id="courses" />Courses</a>
-            <a href="login.html" id="logout" onclick="" />Logout</a>
+            <a href="logout.php" id="logout" />Logout</a>
         </div>
         
         <!--div for containing the username, reputation, real name, class standing-->
@@ -64,22 +63,45 @@
                 while($row=mysql_fetch_array($result4)) {
                     print "Current Standing: " . $row['currentStanding'] . "<br/>";               
                 }
-                
-                //close the connection
-                mysql_close($connection);
+             	
             ?>
         </div>
-        
+        <!--div for holding all of the classes the current user is in--> 
         <div>
             <?php
-                
+            	//print out the title of the section with h2 header
+				echo "<br/><br/><h2>My Classes:</h2>";
+				
+				//create and execute the query to get all of the classes the current user is in.
+				$query = "SELECT courseName, courseNum, courseSection FROM UsersInCourse WHERE username='" . $_SESSION['username']. "'";
+				$result = mysql_query($query, $connection);
+				
+				//set up the table and then populate it with the courses the current user is in
+				echo "<table border='2' id=courses>";
+				while($row=mysql_fetch_array($result)) {
+					//create and execute the query to get the department for all of the classes the user is in
+					$query = "SELECT departmentID FROM CoursesInDepartment WHERE courseName='" . $row['courseName'] . "' && courseNum='" . $row['courseNum'] . "' && courseSection='" . $row['courseSection'] . "'";
+					$result1 = mysql_query($query, $connection) or die("Error: " . mysql_error());
+					$row1 = mysql_fetch_array($result1);
+					
+					//populate the table
+					echo "<tr>";
+					echo "<td><a href=''>$row1[departmentID]-$row[courseNum]-$row[courseSection]</a></td>";//need to enter in a page for which each course will be shown
+					echo "<td><a href=''>$row[courseName]</a></td>";//need to enter in a page for which each course will be shown
+					echo "</tr>";
+				}
+				echo "</table";
             ?>
         </div>
-        
-        
-        
-        <?php
-        
-        ?>
+		<!--div for holding the links to specific pages for the current user (comments by user, resources by user, questions by user, answers by user)-->        
+		<div>
+			<br/>
+			<br/>
+			<a href=""><strong>Comments I Have Posted</strong></a><br/><!--need to put in href value-->
+			<a href=""><strong>Resources I Have Posted</strong></a><br/><!--need to put in href value-->
+			<a href=""><strong>Questions I Have Posted</strong></a><br/><!--need to put in href value-->
+			<a href=""><strong>Answers I Have Posted</strong></a><br/><!--need to put in href value-->
+		</div>
+		                
     </body>
 </html>
