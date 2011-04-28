@@ -37,6 +37,7 @@
 					}else
 						die("That user does not exist!"); 
 				}else 
+					header("Location: login.html");
 					die("please enter your username and password!");
 				
 				echo "Welcome, ".$_SESSION['username']."!  <br><a href='logout.php' >Log Out</a>&nbsp;&nbsp;<a href='User_Profile.php' >Profile</a>";

@@ -33,7 +33,7 @@
                     or die("Could not select database<br/>");
                 
                 //create the query and execute for getting the rank information
-                $query = "SELECT rankName FROM Rank WHERE (reputationMax, reputationMin) IN (SELECT reputationMax, reputationMin FROM UserHasRank WHERE username='ashokanson')";//use a variable for the username here
+                $query = "SELECT rankName FROM Rank WHERE (reputationMax, reputationMin) IN (SELECT reputationMax, reputationMin FROM UserHasRank WHERE username='" . $_SESSION['username'] . "')";//use a variable for the username here
                 $result1 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br>");
                 while($row=mysql_fetch_array($result1)) {
@@ -41,7 +41,7 @@
                 }
             
                 //create the query and execute for getting the reputation
-                $query = "SELECT reputation FROM Users WHERE username = 'ashokanson'";//use a variable for the username here
+                $query = "SELECT reputation FROM Users WHERE username = '" . $_SESSION['username'] . "'";//use a variable for the username here
                 $result2 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br>");
                 while($row=mysql_fetch_array($result2)) {
@@ -49,7 +49,7 @@
                 }
                              
                 //create the query and execute for getting the name
-                $query = "SELECT firstName FROM Users WHERE username = 'ashokanson'";//use a variable for the username here
+                $query = "SELECT firstName FROM Users WHERE username = '" . $_SESSION['username'] . "'";//use a variable for the username here
                 $result3 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br>");
                 while($row=mysql_fetch_array($result3)) {
@@ -57,7 +57,7 @@
                 }
                 
                 //create the query and execute for getting the class standing
-                $query = "SELECT currentStanding FROM Users WHERE username = 'ashokanson'";//use a variable for the username here
+                $query = "SELECT currentStanding FROM Users WHERE username = '" . $_SESSION['username'] . "'";//use a variable for the username here
                 $result4 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br>");
                 while($row=mysql_fetch_array($result4)) {
