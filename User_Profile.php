@@ -73,21 +73,25 @@
 				echo "<br/><br/><h2>My Classes:</h2>";
 				
 				//create and execute the query to get all of the classes the current user is in.
-				$query = "SELECT courseName, courseNum, courseSection FROM UsersInCourse WHERE username='" . $_SESSION['username']. "'";
+				$query = "SELECT * FROM UserInCourseInSemester WHERE username='" . $_SESSION['username']. "'";
 				$result = mysql_query($query, $connection);
 				
 				//set up the table and then populate it with the courses the current user is in
 				echo "<table border='2' id=courses>";
 				while($row=mysql_fetch_array($result)) {
 					//create and execute the query to get the department for all of the classes the user is in
-					$query = "SELECT departmentID FROM CoursesInDepartment WHERE courseName='" . $row['courseName'] . "' && courseNum='" . $row['courseNum'] . "' && courseSection='" . $row['courseSection'] . "'";
-					$result1 = mysql_query($query, $connection) or die("Error: " . mysql_error());
+					$query = "SELECT departmentID FROM CoursesInDepartment WHERE courseID='" . $row['courseID'] . "'";
+					$query2 = "SELECT * FROM Courses WHERE courseID='" . $row['courseID'] . "'";
+					$result1 = mysql_query($query, $connection);
+					$result2 = mysql_query($query2, $connection);
 					$row1 = mysql_fetch_array($result1);
+					$row2 = mysql_fetch_array($result2);
 					
 					//populate the table
 					echo "<tr>";
-					echo "<td><a href=''>$row1[departmentID]-$row[courseNum]-$row[courseSection]</a></td>";//need to enter in a page for which each course will be shown
-					echo "<td><a href=''>$row[courseName]</a></td>";//need to enter in a page for which each course will be shown
+					echo "<td><a href=''>$row1[departmentID]-$row2[courseNum]-$row2[courseSection]</a></td>";//need to enter in a page for which each course will be shown
+					echo "<td><a href=''>$row2[courseName]</a></td>";//need to enter in a page for which each course will be shown
+					echo "<td><a href=''>$row[semester]-$row[year]</a></td>";//need to enter in a page for which each course will be shown
 					echo "</tr>";
 				}
 				echo "</table";
@@ -97,10 +101,11 @@
 		<div>
 			<br/>
 			<br/>
-			<a href=""><strong>Comments I Have Posted</strong></a><br/><!--need to put in href value-->
-			<a href=""><strong>Resources I Have Posted</strong></a><br/><!--need to put in href value-->
-			<a href=""><strong>Questions I Have Posted</strong></a><br/><!--need to put in href value-->
-			<a href=""><strong>Answers I Have Posted</strong></a><br/><!--need to put in href value-->
+			<a href="postsByUser/Comments_By_User.php"><strong>Comments I Have Posted</strong></a><br/>
+			<a href="postsByUser/Resources_By_User.php"><strong>Resources I Have Posted</strong></a><br/>
+			<a href="postsByUser/Questions_By_User.php"><strong>Questions I Have Posted</strong></a><br/>
+			<a href="postsByUser/Answers_By_User.php"><strong>Answers I Have Posted</strong></a><br/>
+			<a href="postsByUser/SubComments_By_User.php"><strong>SubPosts I Have Posted</strong></a><br/>
 		</div>
 		                
     </body>
