@@ -112,7 +112,7 @@
 			<a href="postsByUser/Resources_By_User.php?username=<?=$username?>"><strong>Resources I Have Posted</strong></a><br/>
 			<a href="postsByUser/Questions_By_User.php?username=<?=$username?>"><strong>Questions I Have Posted</strong></a><br/>
 			<a href="postsByUser/Answers_By_User.php?username=<?=$username?>"><strong>Answers I Have Posted</strong></a><br/>
-			<a href="postsByUser/SubComments_By_User.php?username=<?=$username?>"><strong>SubPosts I Have Posted</strong></a><br/>
+			<a href="postsByUser/SubComments_By_User.php?username=<?=$username?>"><strong>SubComments I Have Posted</strong></a><br/>
 		</div>
 		
 		                
