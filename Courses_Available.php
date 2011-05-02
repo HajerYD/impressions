@@ -18,7 +18,7 @@
 		<title><?= $courseName ?></title>
 	</head>
 	<body>
-	
+		
 		 <!--div for the main links that are on every page-->
         <div>
             <a href="member.php" id="member" />Home</a>
@@ -26,16 +26,22 @@
             <a href="Courses_Available.php" id="courses" />Courses</a>
             <a href="logout.php" id="logout" />Logout</a>
 		</div>
+		<form action= " " method= "POST">
+			Name: <input type = "text" name = "theName" /> <br />
+			<input type = "button" value = "Submit"/><br/>
+		</form>
 		<?
-			if(!$_GET['courseNum']){
-				$query = "SELECT courseName, courseNum, courseSection FROM Courses";
+			if(!$_GET['courseID']){
+				$query = "SELECT courseName, courseNum, courseSection,courseID FROM Courses";
 				$result = mysql_query($query, $connection);
 				echo "<table border='2' id='courses'>";
 				while($row=mysql_fetch_array($result)) {
 					//create and execute the query to get the department for all of the classes the user is in
-					$query = "SELECT departmentID FROM CoursesInDepartment WHERE courseName='" . $row['courseName'] . "' && courseNum='" . $row['courseNum'] . "' && courseSection='" . $row['courseSection'] . "'";
+					$query = "SELECT departmentID FROM CoursesInDepartment WHERE courseID='" . $row['courseID'] . "'";// && courseNum='" . $row['courseNum'] . "' && courseSection='" . $row['courseSection'] . "'";
 					$result1 = mysql_query($query, $connection) or die("Error: " . mysql_error());
 					$row1 = mysql_fetch_array($result1);
+					
+					
 					
 					//populate the table
 					?>
@@ -43,7 +49,7 @@
 					<td><?=$row['courseName']?></td>
 					<td><?=$row['courseNum']?></td>
 					<td><?=$row['courseSection']?></td>
-					<td><a href='Courses_Available.php?courseName=<?=$row['courseName']?>&courseNum=<?=$row['courseNum']?>&courseSection=<?=$row['courseSection']?>'>View</a></td><td><a href=''>Add</a></td></tr>
+					<td><a href='Courses_Available.php?courseID=<?=$row['courseID']?>'>View</a></td><td><a href='AddCourse.php'>Add</a></td></tr>
 					<?
 				}
 				echo "</table>";
@@ -53,7 +59,8 @@
         
 		<!--div for styling the resources and questions buttons-->
 		<div>
-		<h2><?= $_GET['courseName'] ?></h2>		<input type = 'button' value = 'Resources'> <input type = 'button' value = 'Questions'><br>
+		<h2><?= $_GET['courseName'] ?></h2>		<a href="resources.php">Resources</a> <a href='questions.php'>Questions</a><br>
+		Name: <input type = "text" name = "theName" /> <br />
 		</div>
 		
 		

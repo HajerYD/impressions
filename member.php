@@ -4,7 +4,12 @@
 			session_start();
 	
 			if(isset($_SESSION['username'])) {
-				echo "Welcome, ".$_SESSION['username']."!  <br><a href='logout.php' >Log Out</a>&nbsp;&nbsp;<a href='User_Profile.php' >Profile</a>";
+				echo "<div>
+            		<a href='member.php' id='member' />Home</a>
+            		<a href='User_Profile.php?username=$_SESSION[username]' id='profile' />Profile</a>
+            		<a href='Courses_Available.php' id='courses' />Courses</a>
+            		<a href='logout.php' id='logout' />Logout</a></div><br/><br/>";
+        		echo "Welcome, ".$_SESSION['username']."!";
 			} else {
 	
 				$username = $_POST ['username'];
@@ -16,7 +21,7 @@
 
 					$query = mysql_query ("SELECT * from Users where username = '$username'");
 					$numrows = mysql_num_rows($query);
-					//if numrows with that usename and password exists then execute otherwise output "user doesnot exist
+					//if numrows with that usename and password exists then execute otherwise output "user does not exist"
 					if($numrows != 0){
 						//fetch each column with that username and put it in an array $row
 						while ($row = mysql_fetch_assoc($query)){
@@ -32,14 +37,19 @@
 							if($username==$dbusername && md5($password)==$dbpassword){
 								$_SESSION['username']=$username;
 							} else
-								echo "Incorrect password";
+								die("Incorrect password<br/><a href='login.html'>Login Here</a>");
 							}
 					}else
-						die("That user does not exist!"); 
+						die("That user does not exist!<br/><a href='login.html'>Login Here</a>"); 
 				}else 
-					die("please enter your username and password!");
-				
-				echo "Welcome, ".$_SESSION['username']."!  <br><a href='logout.php' >Log Out</a>&nbsp;&nbsp;<a href='User_Profile.php' >Profile</a>";
+					die("please enter your username and password!<br/><a href='login.html'>Login Here</a>");
+					
+				echo "<div>
+            		<a href='member.php' id='member' />Home</a>
+            		<a href='User_Profile.php?username=$_SESSION[username]' id='profile' />Profile</a>
+            		<a href='Courses_Available.php' id='courses' />Courses</a>
+            		<a href='logout.php' id='logout' />Logout</a></div><br/><br/>";
+				echo "Welcome, ".$_SESSION['username']."!";
 			}	
 		?>
 	</body>
