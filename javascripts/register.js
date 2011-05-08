@@ -34,11 +34,11 @@ function isValid(form) {
 	
 	//make sure they are using their Manchester email account.  
 	//it must end in ...spartans.manchester.edu or ...manchester.edu
-	var pattern = /manchester.edu$/;
-	if(!pattern.test(email1.value)) {
-		alert("You must use your Manchester email.");
-		return false;
-	}
+	//var pattern = /manchester.edu$/;
+	//if(!pattern.test(email1.value)) {
+	//	alert("You must use your Manchester email.");
+	//	return false;
+	//}
 	
 	//everything has been checked so we can go on to send the data to the database
 	return true;

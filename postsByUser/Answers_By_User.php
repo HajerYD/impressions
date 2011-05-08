@@ -31,39 +31,41 @@
                     or die("Could not select database<br/>");
                 
                 //create the query and execute for getting all of the postID's from a user
-                $query1 = "SELECT * FROM UserMakesPost WHERE username='" . $_GET['username'] . "'";
+                $query1 = "SELECT * FROM UserMakesAnswer WHERE username='" . $_GET['username'] . "'";
                 $result1 = mysql_query($query1, $connection) 
                     or die("Query 1 failed: " . mysql_error() . "<br />");
                 while($row1=mysql_fetch_array($result1)) {  
-                	//get all of the information about each comment
-               		$query2 = "SELECT * FROM Comments_Resources WHERE postID='" . $row1['postID'] . "'";
+                	//get all of the information about each answer
+               		$query2 = "SELECT * FROM Answers WHERE answerID='" . $row1['answerID'] . "'";
                		$result2 = mysql_query($query2, $connection)
                			or die("Query 2 failed: " . mysql_error() . "<br />"); 
                		$row2 = mysql_fetch_array($result2);
                		
-               		//check to make sure it is a comment
-               		if ($row2['type']=="Comment") {
-               			//get the course information where the comment was made
-		           		$query3 = "SELECT * FROM Courses WHERE courseID = (SELECT courseID FROM CommentInCourseInSemester WHERE postID='" . $row1['postID'] . "')";
-		           		$result3 = mysql_query($query3, $connection)
-		           			or die("Query 3 failed: " . mysql_error());
-		           		$row3 = mysql_fetch_array($result3);
+               		//get the question information where the answer was made
+		           	$query3 = "SELECT * FROM Questions WHERE questionID = (SELECT questionID FROM IsAnswerToQuestion WHERE answerID='" . $row1['answerID'] . "')";
+		           	$result3 = mysql_query($query3, $connection)
+		           		or die("Query 3 failed: " . mysql_error());
+		           	$row3 = mysql_fetch_array($result3);
 		           		        		
-		           		//get the course information where the comment was made
-		           		$query4 = "SELECT * FROM CoursesInDepartment WHERE courseID='$row3[courseID]'";
-		           		$result4 = mysql_query($query4, $connection)
-		           			or die("Query 4 failed: " . mysql_error());
-		           		$row4 = mysql_fetch_array($result4);
-		           		
-		           		//print out the information of each comment
-		           		//echo "<div style='border:2px solid black;width:200px;height:50px;background-color:gold;' >";
-		           		echo "<a href=''><strong>$row3[courseName]&nbsp;&nbsp;&nbsp;$row4[departmentID]-$row3[courseNum]-$row3[courseSection]</strong></a><br />";//add the href
-		           		echo "<label style='font-size:12px;'>Posted: $row2[dateCreated]</label><br />";
-		           		echo "<br /><a href=''>$row</a><br />";//need to link to the question
-		           		//echo "<textarea style='width:500px;height:100px;max-width:500px;max-height:100px;' cols='50' readonly='readonly'>$row2[commentPost]</textarea><br />";
-		           		//echo "<label style='font-size:15px;'>Rating: $row2[cumulativeRating]</label>";
-		           		echo "<br /><br />";
-               		}
+		            //get the course information where the answer was made
+		           	$query4 = "SELECT * FROM Courses WHERE courseID = (SELECT courseID FROM QuestionOfCourseInSemester WHERE questionID='$row3[questionID]')";
+		           	$result4 = mysql_query($query4, $connection)
+		           		or die("Query 4 failed: " . mysql_error());
+		           	$row4 = mysql_fetch_array($result4);
+		           	
+		           	//get the course information where the answer was made
+		           	$query5 = "SELECT departmentID FROM CoursesInDepartment WHERE courseID=$row4[courseID]";
+		           	$result5 = mysql_query($query5, $connection)
+		           		or die("Query 5 failed: " . mysql_error());
+		           	$row5 = mysql_fetch_array($result5);
+		           	
+		           	//print out the information of each comment
+		           	echo "<a href='../CourseInfo?courseID=$row4[courseID]'><strong>$row4[courseName]&nbsp;&nbsp;&nbsp;$row5[departmentID]-$row4[courseNum]-$row4[courseSection]</strong></a><br />";
+		           	echo "<a href=''><strong>$row3[questionTitle]</strong></a><br />";//add href
+		           	echo "<label style='font-size:12px;'>Posted: $row2[dateCreated]</label><br />";
+		           	echo "<textarea style='width:500px;height:100px;max-width:500px;max-height:100px;' cols='50' readonly='readonly'>$row2[answerPost]</textarea><br />";
+		           	echo "<label style='font-size:15px;'>Rating: $row2[cumulativeRating]</label>";
+		           	echo "<br /><br />";
                 }
         ?>
         </div>

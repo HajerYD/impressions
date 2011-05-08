@@ -18,7 +18,7 @@
         <!--div for the main links that are on every page-->
         <div>
             <a href="member.php" id="member" />Home</a>
-            <a href="User_Profile.php?username=<?=$username?>" id="profile" />Profile</a>
+            <a href="User_Profile.php?username=<?=$_SESSION["username"]?>" id="profile" />Profile</a>
             <a href="Courses_Available.php" id="courses" />Courses</a>
             <a href="logout.php" id="logout" />Logout</a>
         </div>
@@ -28,8 +28,11 @@
         <!--div for containing the username, reputation, real name, class standing-->
         <div>
             <?php
-                //print out the username in this div
-                echo "<strong>$username</username><br />";
+                //print out the username and edit profile if it is the current user's profile
+                if($_SESSION['username'] == $_GET['username']) 
+	                echo "<strong>$username</strong> - <a href='Edit_Profile.php?username=$username' style='font-size:12px;'>Edit Profile</a><br />";
+				else
+					echo "<strong>$username</strong><br />";
             
                 //connect to MySQL on the webserver
                 $connection = mysql_connect("localhost", "simon", "simonk")
@@ -96,9 +99,9 @@
 					
 					//populate the table
 					echo "<tr>";
-					echo "<td><a href=''>$row1[departmentID]-$row2[courseNum]-$row2[courseSection]</a></td>";//need to enter in a page for which each course will be shown
-					echo "<td><a href=''>$row2[courseName]</a></td>";//need to enter in a page for which each course will be shown
-					echo "<td><a href=''>$row[semester]-$row[year]</a></td>";//need to enter in a page for which each course will be shown
+					echo "<td><a href='CourseInfo?courseID=$row2[courseID]'>$row1[departmentID]-$row2[courseNum]-$row2[courseSection]</a></td>";
+					echo "<td><a href='CourseInfo?courseID=$row2[courseID]'>$row2[courseName]</a></td>";
+					echo "<td>$row[semester]-$row[year]</td>";
 					echo "</tr>";
 				} 
 				echo "</table";

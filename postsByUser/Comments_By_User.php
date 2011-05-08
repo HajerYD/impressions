@@ -56,8 +56,7 @@
 		           		$row4 = mysql_fetch_array($result4);
 		           		
 		           		//print out the information of each comment
-		           		//echo "<div style='border:2px solid black;width:200px;height:50px;background-color:gold;' >";
-		           		echo "<a href=''><strong>$row3[courseName]&nbsp;&nbsp;&nbsp;$row4[departmentID]-$row3[courseNum]-$row3[courseSection]</strong></a><br />";//add the href
+		           		echo "<a href='../CourseInfo?courseID=$row3[courseID]'><strong>$row3[courseName]&nbsp;&nbsp;&nbsp;$row4[departmentID]-$row3[courseNum]-$row3[courseSection]</strong></a><br />";
 		           		echo "<label style='font-size:12px;'>Posted: $row2[dateCreated]</label><br />";
 		           		echo "<textarea style='width:500px;height:100px;max-width:500px;max-height:100px;' cols='50' readonly='readonly'>$row2[commentPost]</textarea><br />";
 		           		echo "<label style='font-size:15px;'>Rating: $row2[cumulativeRating]</label>";

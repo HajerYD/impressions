@@ -34,33 +34,8 @@
 		
 		<!--div for styling the resources and questions buttons-->
 		<div>
-		<h2><?=$courseName?></h2>		<a href=''>Resources</a> <a href=''>Questions</a><br>
+		<h2><?=$courseName?></h2>		<a href='CourseComment.php?courseName=<?=$courseName?>&type=Comment'>Comment</a> <a href='CourseComment.php?courseName=<?=$courseName?>&type=Resource'>Resources</a> <a href=''>Questions</a><br>
 		</div>
-		<form action= "Courses_Available.php" method= "POST">
-			<table>Semester:<tr>
-				<select name ="Semester">
-				<option>Fall</option>
-				<option>Spring</option>
-				</select>
-			</tr>
-			<tr>Year:<select name = "Year">
-			<option></option>
-					<script type="text/javascript" >
-                   year=2011;
-                   	for(i=50;i>0;i--) {
-                   		document.write("<option value='" + year + "'>" + year-- + "</option>");
-                   	}
-                   </script>
-                  
-			</select>
-			</tr>
-			</table>
-		<input type = "submit" value = "Search"/><br/>
-		</form>
-		
-		<textarea rows="5" cols="30">Write your comment here.
-		</textarea>
-		<input type = 'button' value = 'POST' onclick="addComment">
 		
 		<h1>Under Construction</h1>
 		<p>This page is still under contruction.  Please check again later.</p>
