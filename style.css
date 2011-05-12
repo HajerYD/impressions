@@ -1,23 +1,52 @@
 
 body{	
-	background-color:black;
+	background-color:#303030;
 
 }
 #main{
 
 }
 #logo{
-	
+	padding: 10px;
 }
 #links{
-
-	background-image:url("login/links_bg.png");
+	background-image:url("\links_bg.png");
 	width: 1500px;
 	height:107px;
 	background-repeat: no-repeat;
 }
+.words {
+	color:FFFF99;
+}
+.nav_links{
+	padding-right:100px;
+	padding-left:100px;
+	padding-top:30px;
+	padding-bottom:30px;
+	font-size:25px;
+}
+a:link {
+text-decoration:underline;
+color: FFFF99;
+}
+a:visited {
+text-decoration:underline;
+color: FFFF99;
+}
+a:hover {
+text-decoration:underline;
+color: FFFF99;
+}
+a:active {
+text-decoration:underline;
+color: FFFF99;
+} 
+a {
+color: FFFF99;
+}
+
 #rate{
-	background-image:url("login/rate.png");
+	background-image:url("rate.png");
 	background-repeat: no-repeat;
 	width:100%;
 	height:100px;
@@ -25,7 +54,7 @@ body{
 	margin-left:150px;
 }
 #love{
-	background-image:url("login/love.png");
+	background-image:url("love.png");
 	background-repeat: no-repeat;
 	width:307px;
 	height:104px;
@@ -43,11 +72,22 @@ a img{
 	border:0px;
 }
 h2{
-	color: white;
+	color:FFFF99;
 	margin-left:300px;
 	
 }
 h1{ 
-	color: white;
+	color: FFFF99;
 }
-	
+h3{ 
+	color: FFFF99;
+}
+input {
+	background-color:#FFFFCC;
+}
+select {
+	background-color:#FFFFCC;
+}
+textarea {
+	background-color:#FFFFCC;
+}

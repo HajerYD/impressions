@@ -21,24 +21,26 @@
 <html>
     <head>
         <title>Edit Profile</title>
+	 <link rel="stylesheet" type="text/css" href="style.css" />
         <script src="javascripts/Edit_Profile.js" type="text/javascript"></script>
     </head>
     <body>
         <!--div for the main links that are on every page-->
-        <div>
-            <a href="member.php" id="member" />Home</a>
-            <a href="User_Profile.php?username=<?=$username?>" id="profile" />Profile</a>
-            <a href="Courses_Available.php" id="courses" />Courses</a>
-            <a href="logout.php" id="logout" />Logout</a>
-        </div>
+        	<div id='logo'><img src='logo.png' /></div>
+		<div id='links'> </br> <br/>
+			<a class='nav_links' href='member.php' id='member' />Home</a>
+			<a class='nav_links' href='User_Profile.php?username=<?=$_SESSION[username]?>' id='profile' />Profile</a>
+			<a class='nav_links' href='Courses_Available.php' id='courses' />Courses</a>
+			<a class='nav_links' href='logout.php' id='logout' />Logout</a>
+		</div>
         <br />
         <br />
        
        <!--div for holding the form that the user fills out to change user profile settings-->
-       <div>
+       <div class='words'>
        		<form action="">
        			<input type="hidden" id="username" value="<?=$username?>" />
-       			<table>
+       			<table class='words'>
 		        	<tr><td>First Name:</td> <td><input type = "text" id="firstName" name="firstName" value="<?=$row[firstName]?>" /></td></tr>
 		            <tr><td>Last Name:</td> <td><input type = "text" name="lastName" id="lastName" value="<?=$row[lastName]?>" /></td></tr>
 		            <tr><td>Spartan E-Mail:</td> <td><input type = "text" name="email1" id="email1" value="<?=$row[email]?>" /></td></tr>
@@ -49,6 +51,8 @@
 		               <option value="Sophomore">Sophomore</option>
 		               <option value="Junior">Junior</option>
 		               <option value="Senior">Senior</option>
+		               <option value="Professor">Professor</option>
+		               <option value="Other">Other</option>
 		            </select></td></tr>
 		            <tr><td>Birthday:</td> <td>Month: <select name="bdayMonth" id="bdayMonth" >
 					   <option value=""></option>
@@ -117,7 +121,7 @@
 				<span id="result1" style="color:red;"></span>
 				<br />
 				<br />
-				<table>
+				<table class='words'>
 					<tr><td>Old Password:</td><td><input type="password" id="oldPassword" /></td></tr>
 					<tr><td>New Password:</td><td><input type="password" id="newPassword1" /></td></tr>
 					<tr><td>Re-Enter Password:</td><td><input type="password" id="newPassword2" /></td></tr>

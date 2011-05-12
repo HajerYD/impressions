@@ -16,32 +16,36 @@
 <html>
 	<head>
 		<title><?= $courseName ?></title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
 	</head>
 	<body>
 	
 		 <!--div for the main links that are on every page-->
-        <div>
-            <a href="member.php" id="member" />Home</a>
-            <a href="User_Profile.php?username=<?=$_SESSION['username']?>" id="profile" />Profile</a>
-            <a href="Courses_Available.php" id="courses" />Courses</a>
-            <a href="logout.php" id="logout" />Logout</a>
+        
+              <div id='logo'><img src='logo.png' /></div>
+		<div id='links'> </br> <br/>
+			<a class='nav_links' href='member.php' id='member' />Home</a>
+			<a class='nav_links' href='User_Profile.php?username=<?=$_SESSION[username]?>' id='profile' />Profile</a>
+			<a class='nav_links' href='Courses_Available.php' id='courses' />Courses</a>
+			<a class='nav_links' href='logout.php' id='logout' />Logout</a>
 		</div>
-		<form action= "Courses_Available.php" method= "POST">
-			Name: <input type = "text" name = "theName" /> <br />
-			<input type = "submit" value = "Search"/><br/>
+		<form class='words' action= "Courses_Available.php" method= "POST">
+			Name: <input type = "text" name = "theName" /> &nbsp;
+			<input type="submit" value = "Search"/><br/>
 		</form>
 		
 		
 		<?php	
 			if($_POST['theName']!=""){
-				$query = "SELECT * FROM Courses WHERE courseName = '$_POST[theName]'";
+				$query = "SELECT * FROM Courses WHERE courseName LIKE '%$_POST[theName]%'";
 			}
 			else if(!$_GET['courseID']){
-				$query = "SELECT courseName, courseNum, courseSection,courseID FROM Courses";
+				$query = "SELECT courseName, courseNum, courseSection, courseID FROM Courses";
 			
 			}
 				$result = mysql_query($query, $connection);
-				echo "<table border='2' id='courses'>";
+				echo "<table class='words' border='2' id='courses'>";
 					?><tr>
 						<th>Course Number</th>
 						<th>Course Name</th>
@@ -62,7 +66,7 @@
 					<td><?=$row['courseName']?></td>
 					
 					<td><?=$row['courseSection']?></td>
-					<td><a href='CourseInfo?courseID=<?=$row['courseID']?>'>View</a></td><td><a href='AddCourse.php?courseID=<?=$row['courseID']?>'>Add</a></td></tr>
+					<td><a href='CourseInfo?courseID=<?=$row['courseID']?>&departmentID=<?=$row1['departmentID']?>'>View</a></td><td><a href='AddCourse.php?courseID=<?=$row['courseID']?>'>Add</a></td></tr>
 					<?
 				}
 				echo "</table>";

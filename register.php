@@ -1,3 +1,9 @@
+<html>
+<head>
+<title>Register Confirmation</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
 <?php
 
 	// Encrypting the password and setting all the variables for later use
@@ -14,7 +20,7 @@
 	// Connecting, selecting database
 	$link = mysql_connect("localhost", "simon", "simonk")
 		or die("Could not connect: " . mysql_error() . "<br/>");
-	echo "Connected successfully<br/>";
+	//echo "Connected successfully<br/>";
 
 	//select the database to use once connected to mysql
 	mysql_select_db("Impressions") or die("Could not select database<br/>");
@@ -30,7 +36,7 @@
 	$query2 = "INSERT INTO UserHasRank VALUES ('$username', '0', '99')";
 	$result = mysql_query($query2) or die("Query 2 failed: " . mysql_error());
 
-	 echo "starting mail sending";
+	/* echo "starting mail sending";
 	//copy
 	
 	require_once("pear/share/pear/Mail.php");
@@ -97,7 +103,7 @@ echo "7";
 	
 	//copy end
 	echo "mail sent hopefully.";
-/*	//sending email
+	//sending email
 	$to = $email;
 	$subject = "Activate your account";
 	$headers = "From: Impressions@Impressions.com";
@@ -122,5 +128,7 @@ echo "7";
 	mail($to, $subject, $body, $headers);*/
 	//Close the connection to the server since we're done querying
 	mysql_close($link);
-	echo "You have successfully registered with Impressions!</br>Please check your e-mail for a verification e-mail.";
+	echo "You have successfully registered with Impressions!<br /><a href='login.html'>Login Here!</a>";
 ?>
+</body>
+</html>

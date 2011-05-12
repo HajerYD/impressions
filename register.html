@@ -2,11 +2,13 @@
 	<head>
 		<title>Impressions Register</title>
 		<script type="text/javascript" src="javascripts/register.js" ></script>
-		
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
 	</head>
-	<Body>	
-		<h1>Impressions Registration</h1><br/><br/>
-		<h2>Enter Credentials</h2>
+	<body class='words'>	
+		<div id='logo'><img src='logo.png' /></div>
+		<!-- <h1>Registration</h1><br/><br/> -->
+		<h2 style='color:yellow;margin-left:0px;'>Enter Credentials</h2>
 		<p>You must fill in all fields in order to register.</p>
 		<!--Create a form for the user to enter their credentials-->
 		<form action="register.php" onsubmit="return isValid(this);" method="post">
@@ -16,11 +18,13 @@
                 <tr><td>Spartan E-Mail:</td> <td><input type = "text" name="email1" id="email1" /></td></tr>
                 <tr><td>Re-type E-Mail:</td> <td><input type = "text" name="email2" id="email2" /></td></tr>
                 <tr><td>Current Standing</td><td><select name="currentStanding" id="currentStanding" >
-             	   <option value=""></option>
-             	   <option value="Freshman">Freshman</option>
+             	     <option value=""></option>
+             	     <option value="Freshman">Freshman</option>
                    <option value="Sophomore">Sophomore</option>
                    <option value="Junior">Junior</option>
                    <option value="Senior">Senior</option>
+                   <option value="Professor">Professor</option>
+                   <option value="Other">Other</option>
                 </select></td></tr>
                 <tr><td>Birthday:</td> <td>Month: <select name="bdayMonth" id="bdayMonth" >
 				   <option value=""></option>
@@ -89,5 +93,5 @@
             <input type = "submit" value = "Sign Me Up!" name = "submit">
             <input type = "reset" value = "Clear"  />       
         </form>
-	</Body>
+	</body>
 </html>

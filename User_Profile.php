@@ -12,16 +12,19 @@
 
 <html>
     <head>
-        <title>User Profile</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+        	<title>User Profile</title>
+		<div id='logo'><img src='logo.png' /></div>
     </head>
     <body>
         <!--div for the main links that are on every page-->
-        <div>
-            <a href="member.php" id="member" />Home</a>
-            <a href="User_Profile.php?username=<?=$_SESSION["username"]?>" id="profile" />Profile</a>
-            <a href="Courses_Available.php" id="courses" />Courses</a>
-            <a href="logout.php" id="logout" />Logout</a>
-        </div>
+	
+       <div id='links'> </br> <br/>
+		<a class='nav_links' href='member.php' id='member' />Home</a>
+		<a class='nav_links' href='User_Profile.php?username=<?=$_SESSION[username]?>' id='profile' />Profile</a>
+		<a class='nav_links' href='Courses_Available.php' id='courses' />Courses</a>
+		<a class='nav_links' href='logout.php' id='logout' />Logout</a>
+		</div>
         <br />
         <br />
         
@@ -30,7 +33,7 @@
             <?php
                 //print out the username and edit profile if it is the current user's profile
                 if($_SESSION['username'] == $_GET['username']) 
-	                echo "<strong>$username</strong> - <a href='Edit_Profile.php?username=$username' style='font-size:12px;'>Edit Profile</a><br />";
+	                echo "<div class='words'><strong class='words' style='font-size:25px;'>$username</strong> - <a href='Edit_Profile.php?username=$username' style='font-size:12px;'>Edit Profile</a><br /></div>";
 				else
 					echo "<strong>$username</strong><br />";
             
@@ -47,7 +50,7 @@
                 $result1 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br/>");
                 while($row=mysql_fetch_array($result1)) {
-                    print $row['rankName'];               
+                    print "<div class='words'>".$row['rankName'];               
                 }
             
                 //create the query and execute for getting the reputation
@@ -55,7 +58,7 @@
                 $result2 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br/>");
                 while($row=mysql_fetch_array($result2)) {
-                    print " - " . $row['reputation'] . "<br/><br/>";               
+                    print " - " . $row['reputation'] . "</div><br/><br/>";               
                 }
                              
                 //create the query and execute for getting the name
@@ -63,7 +66,7 @@
                 $result3 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br/>");
                 while($row=mysql_fetch_array($result3)) {
-                    print "Name: " . $row['firstName'] . "<br/>";               
+                    print "<div class='words'><strong>Name: </strong> " . $row['firstName'] . "<br/>";               
                 }
                 
                 //create the query and execute for getting the class standing
@@ -71,7 +74,7 @@
                 $result4 = mysql_query($query, $connection) 
                     or die("Query failed: " . mysql_error() . "<br/>");
                 while($row=mysql_fetch_array($result4)) {
-                    print "Current Standing: " . $row['currentStanding'] . "<br/>";               
+                    print "<strong>Current Standing: </strong>" . $row['currentStanding'] . "</div>";               
                 }
              	
             ?>
@@ -80,14 +83,14 @@
         <div>
             <?php
             	//print out the title of the section with h2 header
-				echo "<br/><br/><h2>My Classes:</h2>";
+				echo "<br/><br/><strong class='words' style='font-size:25'>My Classes:</strong>";
 				
 				//create and execute the query to get all of the classes the current user is in.
 				$query = "SELECT * FROM UserInCourseInSemester WHERE username='" . $username . "'";
 				$result = mysql_query($query, $connection);
 				
 				//set up the table and then populate it with the courses the current user is in
-				echo "<table border='2' id=courses>";
+				echo "<table border='2' style='font-size:13pt;' class='words' id=courses>";
 				while($row=mysql_fetch_array($result)) {
 					//create and execute the query to get the department for all of the classes the user is in
 					$query = "SELECT departmentID FROM CoursesInDepartment WHERE courseID='" . $row['courseID'] . "'";
@@ -117,6 +120,5 @@
 			<a href="postsByUser/Answers_By_User.php?username=<?=$username?>"><strong>Answers I Have Posted</strong></a><br/>
 		</div>
 		
-		                
     </body>
 </html>

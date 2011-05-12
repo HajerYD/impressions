@@ -7,18 +7,21 @@
 <html>
 	<head>
 		<title>Resources By User</title>
+		<link rel="stylesheet" type="text/css" href="../style.css" />
+
 	</head>
 	<body>
 		<!--div for the main links that are on every page-->
-        <div>
-            <a href="../member.php" id="member" />Home</a>
-            <a href="../User_Profile.php?username=<?=$_SESSION['username']?>" id="profile" />Profile</a>
-            <a href="../Courses_Available.php" id="courses" />Courses</a>
-            <a href="../logout.php" id="logout" />Logout</a>
-        </div>
+       <div id='logo'><img src='../logo.png' />
+				<div style="background-image:url('../links_bg.png');width:1500px;height:107px;background-repeat:no-repeat;"> <br /> <br />
+				<a class='nav_links' href='../member.php' id='member' />Home</a>
+				<a class='nav_links' href='../User_Profile.php?username=<?=$_SESSION[username]?>' id='profile' />Profile</a>
+				<a class='nav_links' href='../Courses_Available.php' id='courses' />Courses</a>
+				<a class='nav_links' href='../logout.php' id='logout' />Logout</a>
+				</div>
         <br/>
         
-        <h2>Resources By <?=$_GET['username']?></h2>
+        <h2 style='margin-left:0px;'>Resources By <?=$_GET['username']?></h2>
         <!--div for the list of comments by the user-->
         <div>
         <?php
@@ -31,7 +34,7 @@
                     or die("Could not select database<br/>");
                 
                 //create the query and execute for getting all of the postID's from a user
-                $query1 = "SELECT * FROM UserMakesPost WHERE username='" . $_GET['username'] . "'";
+                $query1 = "SELECT * FROM UserMakesPost WHERE username='" . $_GET['username'] . "' ORDER BY postID DESC";
                 $result1 = mysql_query($query1, $connection) 
                     or die("Query 1 failed: " . mysql_error() . "<br />");
                 while($row1=mysql_fetch_array($result1)) {  
